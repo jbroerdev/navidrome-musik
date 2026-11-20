@@ -1,0 +1,7 @@
+**
+!Dockerfile
+!package.json
+!server.mjs
+!healthcheck.mjs
+!public/
+!public/**

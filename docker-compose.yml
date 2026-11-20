@@ -1,0 +1,30 @@
+name: navidrome-musik
+services:
+  musik-ui:
+    image: ghcr.io/jbroerdev/navidrome-musik:latest
+    restart: unless-stopped
+    init: true
+    ports:
+      - "4173:4173"
+    environment:
+      NAVIDROME_URL: http://navidrome:4533
+      # Add the IP or hostname used to open this UI on your NAS.
+      ALLOWED_HOSTS: localhost,127.0.0.1
+      # For an HTTPS reverse proxy, set the exact UI origin:
+      # PUBLIC_ORIGIN: https://music-ui.example.com
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+x-casaos:
+  id: local.navidrome.musik
+  main: musik-ui
+  index: /
+  scheme: http
+  port_map: "4173"
+  icon: https://raw.githubusercontent.com/jbroerdev/navidrome-musik/main/public/favicon.svg
+  title:
+    de_DE: Musik
+    en_US: Music
+  category: Media
+  architectures: [amd64, arm64]
+  version: "0.1.0"
